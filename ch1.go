@@ -13,6 +13,7 @@ func main() {
 	//loopDivisibleBy50()
 	//rangeDivisibleBy50()
 	//promptInteger()
+	reverseUserNumber()
 }
 
 // resulting in zero 4-1
@@ -153,6 +154,13 @@ func promptInteger() {
 
 //Write a program that asks the user for an input integer and then computes the reverse of that number 
 
-func reserseUserNumber(){
-
+func reverseUserNumber(){
+  fmt.Println("please enter a number");
+  userInput := string("");
+  fmt.Scan(&userInput);
+  reversedString := string("")
+  for i:= int(len(userInput)) -1; i >= 0 ; i-- {
+    reversedString += string(userInput[i])
+  }
+  fmt.Printf("the reverse string is %v", reversedString)
 }
