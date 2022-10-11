@@ -13,7 +13,9 @@ func main() {
 	//loopDivisibleBy50()
 	//rangeDivisibleBy50()
 	//promptInteger()
-	reverseUserNumber()
+	//reverseUserNumber()
+	//length()
+	fizzBuzz()
 }
 
 // resulting in zero 4-1
@@ -152,15 +154,80 @@ func promptInteger() {
 
 }
 
-//Write a program that asks the user for an input integer and then computes the reverse of that number 
+//Write a program that asks the user for an input integer and then computes the reverse of that number
 
-func reverseUserNumber(){
-  fmt.Println("please enter a number");
-  userInput := string("");
-  fmt.Scan(&userInput);
-  reversedString := string("")
-  for i:= int(len(userInput)) -1; i >= 0 ; i-- {
-    reversedString += string(userInput[i])
-  }
-  fmt.Printf("the reverse string is %v", reversedString)
+func reverseUserNumber() {
+	fmt.Println("please enter a number")
+	userInput := string("")
+	fmt.Scan(&userInput)
+	reversedString := string("")
+	for i := int(len(userInput)) - 1; i >= 0; i-- {
+		reversedString += string(userInput[i])
+	}
+	fmt.Printf("the reverse string is %v", reversedString)
+}
+
+//Write a program that computes the length of a string without using the len function.
+
+func length() {
+	fmt.Println("enter your string")
+	stringInput := string("")
+	fmt.Scan(&stringInput)
+	count := 0
+	for index := range stringInput {
+		count = index
+	}
+	fmt.Printf("the length is %v", count)
+}
+
+/* Write a program that loops through a series of values and uses those values to determine
+the output shown to the user. The program should perform the following steps:
+Ask the user for a number.
+Output a count starting with 0.
+Display the count number if it is not divisible by 3 or 5.
+Replace every multiple of 3 with the word “fizz.”
+Replace every multiple of 5 with the word “buzz.”
+Replace multiples of both 3 and 5 with “fizz buzz.”
+Continue counting until the number of integers replaced with “fizz,” “buzz,” or “fizz buzz” reaches the input number.
+The last output line should read “TRADITION!!” */
+
+func fizzBuzz() {
+	fmt.Println("please enter a number")
+	initialNumber := string("")
+	fmt.Scan(&initialNumber)
+	var intInitialNumber int
+	intInitialNumber, _ = strconv.Atoi(initialNumber)
+	var initialCountofWords = 0
+	for i := 0; i >= 0; i++ {
+		if initialCountofWords == intInitialNumber {
+			fmt.Println("TRADITION !!")
+			break
+		}
+
+		if i == 0 {
+			fmt.Println(i)
+			continue
+
+		} else {
+			if i%3 == 0 && i%5 == 0 {
+				fmt.Println("fizz buzz")
+				initialCountofWords++
+				continue
+			}
+			if i%5 == 0 {
+				fmt.Println("Buzz")
+				initialCountofWords++
+				continue
+			}
+			if i%3 == 0 {
+				fmt.Println("Fizz")
+				initialCountofWords++
+				continue
+			}
+		}
+
+		fmt.Println(i)
+
+	}
+
 }
