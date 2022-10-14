@@ -15,7 +15,8 @@ func main() {
 	//promptInteger()
 	//reverseUserNumber()
 	//length()
-	fizzBuzz()
+	//fizzBuzz()
+	findIncomeTax()
 }
 
 // resulting in zero 4-1
@@ -230,4 +231,52 @@ func fizzBuzz() {
 
 	}
 
+}
+
+// create a program that calculate the income tax of a
+// single filer based on the year 2020 information
+// you are using $35,987.65 for the gross income value, with two dependents, except where stated otherwise
+// When you test the code with input values, you can use different values to see what happens
+// All taxpayers are allowed a $12,200 standard deduction.
+// For each dependent, a taxpayer is allowed an additional $2,000 deduction
+/* 10%	Up to $9,875
+//12%	$9,876 to $40,125
+22%	$40,126 to $85,525
+24%	$85,526 to $163,300
+32%	$163,301 to $207,350
+35%	$207,351 to $518,400
+37%	$518,401 or more */
+
+// as a courtesy program can stop at any percentage deduction
+
+func findIncomeTax() {
+	//finding income tax stopping at 24% bracket 163300
+	var grossIncome float64
+	var dependents int
+	var taxableIncome float64
+	var taxDue float64
+	var max10 = 9875
+	var max12 = 40125
+	var max22 = 85525
+
+	fmt.Print("Enter your gross income from your 2020 w2:\n")
+	fmt.Scan(&grossIncome)
+	fmt.Printf("Your gross income is: $%v\n", grossIncome)
+	fmt.Print("How many dependents are you claiming ?\n")
+	fmt.Scan(&dependents)
+	fmt.Printf("Your claimed number of dependents is : %v\n", dependents)
+
+	// tax calculation
+	taxableIncome = grossIncome - 12200 - (2000 * float64(dependents))
+	fmt.Printf("Your taxable income is %v\n", taxableIncome)
+	if taxableIncome <= float64(max10) {
+		taxDue = taxableIncome * 0.1
+	} else if taxableIncome <= float64(max12) {
+		taxDue = taxableIncome*0.1 + (taxableIncome-float64(max10))*0.12
+	} else if taxableIncome <= float64(max22) {
+		taxDue = taxableIncome*0.1 + (taxableIncome-float64(max10))*0.12 + (taxableIncome-float64(max12))*0.22
+	} else {
+		taxDue = taxableIncome*0.1 + (taxableIncome-float64(max10))*0.12 + (taxableIncome-float64(max12))*0.22 + (taxableIncome-float64(max22))*0.24
+	}
+	fmt.Printf("your tax due is $%v\n", taxDue)
 }
