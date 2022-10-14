@@ -268,7 +268,7 @@ func findIncomeTax() {
 
 	// tax calculation
 	taxableIncome = grossIncome - 12200 - (2000 * float64(dependents))
-	fmt.Printf("Your taxable income is %v\n", taxableIncome)
+	fmt.Printf("Your taxable income is $%v\n", taxableIncome)
 	if taxableIncome <= 0 {
         taxDue = 0
 	}else if taxableIncome <= float64(max10) {
@@ -280,5 +280,5 @@ func findIncomeTax() {
 	} else {
 		taxDue = taxableIncome*0.1 + (taxableIncome-float64(max10))*0.12 + (taxableIncome-float64(max12))*0.22 + (taxableIncome-float64(max22))*0.24
 	}
-	fmt.Printf("your tax due is $%v\n", taxDue)
+	fmt.Printf("your tax due is $%v\n", int(taxDue))
 }
